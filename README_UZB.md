@@ -114,18 +114,23 @@ grep birinchi marta Unixning 4-Versiyasiga kiritilgan. U "odatda prototip dastur
 - Xatolik holati yuzaga kelganda xabar ifodasi muhim emas.
 - stdin orqali kiritilganlarni qayta ishlash shart emas.
 
+### Testlash xususiyatlari
+
+Sizning dasturingiz alpine 3.20 versiyasida test qilinadi, bu yerda cat va grep utilitalari busybox-versiyalarida taqdim etilgan. E'tibor bering, busybox xatti-harakati GNU-realizatsiyalaridan farq qilishi mumkin.
 
 ## Part 1. cat utilitasi bilan ishlash
 
 cat utilitasini ishlab chiqishingiz kerak:
 - U yuqorida sanab o'tilgan barcha bayroqlarni (jumladan, GNU versiyalarini) [qo'llab-quvvatlashi kerak](#cat-opsiyalari).
+- Ham bayroqlar bilan, ham bayroqlarsiz chaqiruvni qo'llab-quvvatlash.
 - Boshlang’ich, sarlavha va yig’ish fayllari src/cat/ direktoriyasida joylashgan bo'lishi kerak.
 - Yakuniy bajariladigan fayl src/cat/ direktoriyasida joylashgan bo’lishi va s21_cat deb nomlanishi kerak.
 
 ## Part 2. grep utilitasi bilan ishlash
 
 grep utilitasini ishlab chiqishingiz kerak:
-- Quyidagi bayroqlar qo'llab-quvvatlanishi: `-e` `-i` `-v` `-c` `-I` `-n`
+- Quyidagi bayroqlar qo'llab-quvvatlanishi: `-e` `-i` `-v` `-c` `-l` `-n`
+- Ham bayroqlar bilan, ham bayroqlarsiz chaqiruvni qo'llab-quvvatlash.
 - Muntazam ifodalar uchun faqat pcre2 yoki regex kutubxonalaridan foydalanishingiz mumkin.
 - Boshlang’ich, sarlavha va make fayllari src/grep/ direktoriyasida joylashgan bo'lishi kerak.
 - Yakuniy bajariladigan fayl src/grep/ direktoriyasida joylashgan bo'lishi va s21_grep deb nomlanishi kerak.

@@ -116,10 +116,15 @@ grep was first included in version 4 of Unix. Noting that it is "generally cited
 - The statement of the message in the case of an error does not matter.
 - Input via stdin is not required to be supported.
 
+### Testing specifics
+
+Your implementation will be tested using alpine version 3.20, where cat and grep utilities are presented as busybox versions. Note that busybox behavior may differ from GNU implementations.
+
 ## Part 1. Working with the cat utility
 
 You need to develop a cat utility:
 - Support of all flags (including GNU versions) specified [above](#cat-options).
+- Support both calls with and without flags.
 - The source, header, and build files must be placed in the src/cat/ directory.
 - The resulting executable file must be placed in the directory src/cat/ and named s21_cat.
 
@@ -127,6 +132,7 @@ You need to develop a cat utility:
 
 You need to develop the grep utility:
 - Support of the following flags: `-e`, `-i`, `-v`, `-c`, `-l`, `-n`.
+- Support both calls with and without flags.
 - Only pcre2 or regex libraries can be used for regular expressions.
 - The source, header and make files must be placed in the src/grep/ directory.
 - The resulting executable file must be placed in the directory src/grep/ and named s21_grep.
