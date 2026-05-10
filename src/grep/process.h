@@ -11,5 +11,4 @@ int process_files(int argc, char **argv, int start_index, const Options *opts,
 void process_file(const Options *opts, ProcessContext *ctx);
 void process_line(char *line, const Options *opts, ProcessContext *ctx);
 
-
 #endif /* PROCESS_H */

@@ -3,6 +3,7 @@
 #include "process.h"
 
 #include <stdio.h>
+#include <string.h>
 
 void print_only_matching(const char *line, ProcessContext *ctx) {
   if (!ctx->compiled) {
@@ -61,7 +62,11 @@ void handle_match(const char *line, const Options *opts, ProcessContext *ctx) {
 void process_line(char *line, const Options *opts, ProcessContext *ctx) {
   ctx->line_num++;
 
-  line[strcspn(line, "\n")] = '\0';
+  size_t len = strlen(line);
+  if (len > 0 && line[len - 1] == '\n') {
+    line[len - 1] = '\0';
+  }
+
   ctx->line_length = strlen(line);
 
   int has_match = 0;
@@ -102,7 +107,9 @@ void process_file(const Options *opts, ProcessContext *ctx) {
     close_file = 1;
   }
 
-  while (fgets(line, sizeof(line), file) != NULL) {
+  memset(line, 0, sizeof(line));
+
+  while (fgets(line, sizeof(line) - 1, file) != NULL) {
     ctx->line_length = strlen(line);
     process_line(line, opts, ctx);
     if (opts->files_with_matches && ctx->match_count > 0) {
@@ -113,6 +120,8 @@ void process_file(const Options *opts, ProcessContext *ctx) {
       }
       break;
     }
+
+    memset(line, 0, sizeof(line));
   }
 
   // Проверка ошибок чтения

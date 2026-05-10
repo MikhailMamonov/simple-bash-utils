@@ -11,17 +11,13 @@ int main(int argc, char **argv) {
   SET_BINARY_MODE(stdout);
 
   Options opts;
-
   init_options(&opts);
 
-  CompiledPatterns compiled;
+  CompiledPatterns compiled = {0};
 
-  ProcessContext ctx = {.match_count = 0,
-                        .line_num = 0,
-                        .has_error = 0,
-                        .filename = NULL,
-                        .line_length = 0,
-                        .compiled = &compiled};
+  ProcessContext ctx;
+  memset(&ctx, 0, sizeof(ProcessContext));
+  ctx.compiled = &compiled;
   int parse_result = parse_options(argc, argv, &opts);
 
   if (parse_result == PARSE_HELP) {

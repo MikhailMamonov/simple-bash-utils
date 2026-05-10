@@ -70,11 +70,16 @@ int compile_patterns(Options *opts, CompiledPatterns *compiled) {
 }
 
 void free_compiled_patterns(CompiledPatterns *compiled) {
-  if (compiled->regexes) {
-    for (int i = 0; i < compiled->regex_count; i++) {
-      regfree(&compiled->regexes[i]);
+  if (compiled) {
+    if (compiled->regexes) {
+      for (int i = 0; i < compiled->regex_count; i++) {
+        regfree(&compiled->regexes[i]);
+      }
+      free(compiled->regexes);
+      compiled->regexes = NULL;
     }
-    free(compiled->regexes);
+    compiled->regex_count = 0;
+    compiled->has_empty_pattern = 0;
   }
 }
 

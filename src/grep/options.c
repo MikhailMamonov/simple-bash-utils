@@ -9,6 +9,8 @@
 #define INITIAL_PATTERN_CAPACITY 10
 
 void init_options(Options *opts) {
+  memset(opts, 0, sizeof(Options));
+
   opts->patterns = NULL;
   opts->pattern_count = 0;
   opts->pattern_capacity = 0;
